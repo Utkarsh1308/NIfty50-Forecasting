@@ -4,6 +4,9 @@ from sklearn.preprocessing import MinMaxScaler
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import keras
+import os
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 np.random.seed(1)
 cols = ['Date', 'Open', 'High', 'Low', 'Close', 'Future_Close']

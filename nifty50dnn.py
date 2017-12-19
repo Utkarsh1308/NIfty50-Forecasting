@@ -13,9 +13,6 @@ cols = ['Date', 'Open', 'High', 'Low', 'Close', 'Future_Close']
 data = pd.read_csv('^NSEI.xslx', header=0, names=cols)
 data.dropna(axis=0, how='any')
 data = data.drop(['Date'], axis=1)
-data['Close'] = pd.to_numeric(data['Close'], errors='coerce').fillna(0).astype(float)
-data['Future_Close'] = pd.to_numeric(data['Future_Close'], errors='coerce').fillna(0).astype(float)
-data['Ratio'] = data['Future_Close']/data['Close']
 arr = data.copy()
 arr = arr.dropna(axis=0, how='any')
 train_start=0
@@ -34,6 +31,14 @@ for i in range(0,5):
     data_test=data_test.loc[data_test[i]!='null',:]
 data_train=data_train.astype(float)
 data_test=data_test.astype(float)
+data_train.columns = cols[1:] 
+data_test.columns = cols[1:]
+data_train['Close'] = pd.to_numeric(data_train['Close'], errors='coerce').fillna(0).astype(float)
+data_train['Future_Close'] = pd.to_numeric(data_train['Future_Close'], errors='coerce').fillna(0).astype(float)
+data_train['Ratio'] = data_train['Future_Close']/data_train['Close']
+data_test['Close'] = pd.to_numeric(data_test['Close'], errors='coerce').fillna(0).astype(float)
+data_test['Future_Close'] = pd.to_numeric(data_test['Future_Close'], errors='coerce').fillna(0).astype(float)
+data_test['Ratio'] = data_test['Future_Close']/data_test['Close']
 # scaler=MinMaxScaler()
 # scaler.fit(data_train)
 # data_train=scaler.transform(data_train)

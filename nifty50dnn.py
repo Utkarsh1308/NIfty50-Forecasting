@@ -44,9 +44,9 @@ data_test['Ratio'] = data_test['Future_Close']/data_test['Close']
 # data_train=scaler.transform(data_train)
 # data_test=scaler.transform(data_test)
 x_train=data_train.iloc[:,0:4]
-y_train=data_train.iloc[:, 4]
+y_train=data_train.iloc[:, 5]
 x_test=data_test.iloc[:,0:4]
-y_test=data_test.iloc[:, 4]
+y_test=data_test.iloc[:, 5]
 features = 4
 X = tf.placeholder(dtype=tf.float32, shape=[None, features])
 Y = tf.placeholder(dtype=tf.float32, shape=[None])

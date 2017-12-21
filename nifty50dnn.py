@@ -32,11 +32,9 @@ for i in range(0,5):
     data_train=data_train.loc[data_train[i]!='null',:]
     data_test=data_test.loc[data_test[i]!='null',:]
 """
-=======
 for i in range(0,5):
     data_train=data_train.loc[data_train[i]!='null',:]
     data_test=data_test.loc[data_test[i]!='null',:]
->>>>>>> 10287f2b685db8cb1033d494faf7e809b2c7a630
 data_train=data_train.astype(float)
 data_test=data_test.astype(float)
 data_train.columns = cols[1:] 
@@ -47,11 +45,8 @@ data_train['Ratio'] = data_train['Future_Close']/data_train['Close']
 data_test['Close'] = pd.to_numeric(data_test['Close'], errors='coerce').fillna(0).astype(float)
 data_test['Future_Close'] = pd.to_numeric(data_test['Future_Close'], errors='coerce').fillna(0).astype(float)
 data_test['Ratio'] = data_test['Future_Close']/data_test['Close']
-<<<<<<< HEAD
 data_train['Direction'] = np.where(data_train['Future_Close'] > data_train['Close'], 1, 0)
 data_test['Direction'] = np.where(data_test['Future_Close'] > data_test['Close'], 1, 0)
-=======
->>>>>>> 10287f2b685db8cb1033d494faf7e809b2c7a630
 # scaler=MinMaxScaler()
 # scaler.fit(data_train)
 # data_train=scaler.transform(data_train)

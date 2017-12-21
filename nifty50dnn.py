@@ -26,11 +26,17 @@ data_train=arr[np.arange(train_start, train_end),:]
 data_test=arr[np.arange(test_start,test_end),:]
 data_train=pd.DataFrame(data_train)
 data_test=pd.DataFrame(data_test)
+<<<<<<< HEAD
 """
 for i in range(0,5):
     data_train=data_train.loc[data_train[i]!='null',:]
     data_test=data_test.loc[data_test[i]!='null',:]
 """
+=======
+for i in range(0,5):
+    data_train=data_train.loc[data_train[i]!='null',:]
+    data_test=data_test.loc[data_test[i]!='null',:]
+>>>>>>> 10287f2b685db8cb1033d494faf7e809b2c7a630
 data_train=data_train.astype(float)
 data_test=data_test.astype(float)
 data_train.columns = cols[1:] 
@@ -41,8 +47,11 @@ data_train['Ratio'] = data_train['Future_Close']/data_train['Close']
 data_test['Close'] = pd.to_numeric(data_test['Close'], errors='coerce').fillna(0).astype(float)
 data_test['Future_Close'] = pd.to_numeric(data_test['Future_Close'], errors='coerce').fillna(0).astype(float)
 data_test['Ratio'] = data_test['Future_Close']/data_test['Close']
+<<<<<<< HEAD
 data_train['Direction'] = np.where(data_train['Future_Close'] > data_train['Close'], 1, 0)
 data_test['Direction'] = np.where(data_test['Future_Close'] > data_test['Close'], 1, 0)
+=======
+>>>>>>> 10287f2b685db8cb1033d494faf7e809b2c7a630
 # scaler=MinMaxScaler()
 # scaler.fit(data_train)
 # data_train=scaler.transform(data_train)
@@ -109,7 +118,6 @@ for e in range(epochs):
             # plt.pause(0.01)
 
 pred=net.run(out, feed_dict={X:x_test})
-print(pred)
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
 line1, =ax1.plot(y_test, linewidth=0.5)

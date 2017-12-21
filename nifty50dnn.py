@@ -10,7 +10,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 np.random.seed(1)
 cols = ['Date', 'Open', 'High', 'Low', 'Close', 'Future_Close']
-data = pd.read_csv('^NSEI.xslx', header=0, names=cols)
+data = pd.read_csv('^NSEI_withoutnull.csv', header=0, names=cols)
 data.dropna(axis=0, how='any')
 data = data.drop(['Date'], axis=1)
 arr = data.copy()
@@ -76,7 +76,7 @@ out = (tf.add(tf.matmul(hidden_3, W_out), bias_out))
 # mae=tf.reduce_mean(tf.abs(tf.subtract(Y,out)))
 rmse=tf.sqrt(tf.reduce_mean(tf.squared_difference(out, Y)))
 # mse = tf.reduce_mean(tf.squared_difference(out, Y))
-opt = tf.train.AdamOptimizer(learning_rate=0.0001, beta1=.99, beta2=.999).minimize(rmse)
+opt = tf.train.AdamOptimizer(learning_rate=0.001, beta1=.99, beta2=.999).minimize(rmse)
 net = tf.Session()
 net.run(tf.global_variables_initializer())
 # Number of epochs and batch size
@@ -109,6 +109,7 @@ for e in range(epochs):
             # plt.pause(0.01)
 
 pred=net.run(out, feed_dict={X:x_test})
+print(pred)
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
 line1, =ax1.plot(y_test, linewidth=0.5)

@@ -26,15 +26,11 @@ data_train=arr[np.arange(train_start, train_end),:]
 data_test=arr[np.arange(test_start,test_end),:]
 data_train=pd.DataFrame(data_train)
 data_test=pd.DataFrame(data_test)
-<<<<<<< HEAD
 """
 for i in range(0,5):
     data_train=data_train.loc[data_train[i]!='null',:]
     data_test=data_test.loc[data_test[i]!='null',:]
 """
-for i in range(0,5):
-    data_train=data_train.loc[data_train[i]!='null',:]
-    data_test=data_test.loc[data_test[i]!='null',:]
 data_train=data_train.astype(float)
 data_test=data_test.astype(float)
 data_train.columns = cols[1:] 

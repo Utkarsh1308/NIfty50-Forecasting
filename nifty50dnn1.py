@@ -8,6 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn import svm
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -70,6 +71,11 @@ Naïve Bayes Classifier Algorithm
 gau = GaussianNB()
 gau.fit(x_train, y_train)
 pred = gau.predict(x_test)
+
+Support Vector Machines
+model = svm.SVC(kernel='linear', C = 1, gamma = 1)
+model.fit(x_train, y_train)
+pred = model.predict(x_test)
 """
 pred = pred.reshape(483,1)
 error = np.sum(np.subtract(pred,(y_test.values.reshape(len(pred),1)))!=0)
@@ -80,5 +86,5 @@ RandomForestClassifier = 54.24430641821946
 Naïve Bayes Classifier Algorithm = 53.83022774327122
 Decision Tree = 53.41614906832298
 Logistic Regression = 49.68944099378882
-
+Support Vector Machine = 50.72463768115942
 """

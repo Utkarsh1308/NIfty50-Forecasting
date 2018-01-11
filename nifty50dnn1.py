@@ -73,21 +73,21 @@ gau.fit(x_train, y_train)
 pred = gau.predict(x_test)
 
 Support Vector Machines
-model = svm.SVC(kernel='linear', C = 1, gamma = 1)
+model = svm.SVC(kernel='sigmoid', C = 100, gamma = 0.001)
 model.fit(x_train, y_train)
 pred = model.predict(x_test)
 """
-model = svm.SVC(kernel='linear', C = 100, gamma = 0.001)
-model.fit(x_train, y_train)
-pred = model.predict(x_test)
-pred = pred.reshape(483,1)
+
+pred = pred.reshape(len(pred),1)
 error = np.sum(np.subtract(pred,(y_test.values.reshape(len(pred),1)))!=0)
-print(float(error)/483*100)
+print(float(error)/len(pred)*100)
+print(pred)
+
 """
 Errors
 RandomForestClassifier = 54.24430641821946
 Naïve Bayes Classifier Algorithm = 53.83022774327122
 Decision Tree = 53.41614906832298
 Logistic Regression = 49.68944099378882
-Support Vector Machine = 47.4120082815735
+Support Vector Machine = 46.16977225672878
 """

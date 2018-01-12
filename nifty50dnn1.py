@@ -9,6 +9,20 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn import svm
+from matplotlib.colors import ListedColormap
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.datasets import make_moons, make_circles, make_classification
+from sklearn.neural_network import MLPClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.svm import SVC
+from sklearn.gaussian_process import GaussianProcessClassifier
+from sklearn.gaussian_process.kernels import RBF
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -76,12 +90,34 @@ Support Vector Machines
 model = svm.SVC(kernel='sigmoid', C = 100, gamma = 0.001)
 model.fit(x_train, y_train)
 pred = model.predict(x_test)
+
+KNeighborsClassifier
+neigh = KNeighborsRegressor(n_neighbors=2)
+neigh.fit(x_train, y_train)
+pred = neigh.predict(x_test)
+
+MLPClassifier
+clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(5, 2), random_state = 1)
+clf.fit(x_train, y_train)
+pred = clf.predict(x_test)
+
+AdaBoostClassifier
+clf = AdaBoostClassifier()
+clf.fit(x_train, y_train)
+pred = clf.predict(x_test)
+
+QuadraticDiscriminantAnalysis
+clf = QuadraticDiscriminantAnalysis()
+clf.fit(x_train, y_train)
+pred = clf.predict(x_test)
 """
 
+clf = QuadraticDiscriminantAnalysis()
+clf.fit(x_train, y_train)
+pred = clf.predict(x_test)
 pred = pred.reshape(len(pred),1)
 error = np.sum(np.subtract(pred,(y_test.values.reshape(len(pred),1)))!=0)
 print(float(error)/len(pred)*100)
-print(pred)
 
 """
 Errors
@@ -90,4 +126,8 @@ Naïve Bayes Classifier Algorithm = 53.83022774327122
 Decision Tree = 53.41614906832298
 Logistic Regression = 49.68944099378882
 Support Vector Machine = 46.16977225672878
+KNeighborsClassifier = 84.67908902691511
+MLPClassifier = 46.16977225672878
+AdaBoostClassifier = 51.13871635610766
+QuadraticDiscriminantAnalysis = 49.06832298136646
 """
